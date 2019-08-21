@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let Rat = function (name,weigth,speed,status) {
+        this.name = name;
+        this.weight = weigth;
+        this.speed = speed;
+        this.status = status;
+
+        this.lifeStatus = function () {
+            return this.status;
+        };
+        this.say = function (ratSay) {
+            this.say = ratSay;
+        };
+    };
+    let Cat = function (name,weigth,speed) {
+        this.name = name;
+        this.weight = weigth;
+        this.speed = speed;
+
+        this.say = function (catSay) {
+            this.say = catSay;
+        };
+        this.catchRat = function (rat) {
+            if (this.speed > rat.speed) {
+                rat.status = false;
+                document.write("chuột bị ăn "+"<br>");
+            }else if (this.speed < rat.speed){
+                rat.status = true;
+                document.write("chuột chạy thoát" +"<br>");
+            }
+        };
+        this.eatRat = function (rat) {
+            if (!rat.status){
+                this.weight++;
+                document.write(rat.status +"<br>");
+            }else if (rat.status){
+                document.write(rat.status + "<br>")
+            }
+            document.write(cat.weight +"<br>");
+        };
+    };
+
+    let catSpeed = Math.floor(Math.random()*30);
+    let ratSpeed = Math.floor(Math.random()*30);
+    let rat = new Rat('rat',18,ratSpeed,true);
+    let cat = new Cat('cat',25,catSpeed);
+    document.write("Catspeed: " + catSpeed + "<br>");
+    document.write("Ratspeed: " + ratSpeed + "<br>");
+
+    rat.say("Rat nói: chít chít. " + "<br>");
+    document.write(rat.say);
+
+    document.write(rat.lifeStatus() +"<br>");
+
+    cat.say("Meo đáp: meo meo. "+ "<br>");
+    document.write(cat.say);
+
+    cat.catchRat(rat);
+
+    cat.eatRat(rat);
+</script>
+</body>
+</html>
